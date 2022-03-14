@@ -1,0 +1,39 @@
+﻿@model Entities.WhatWeDo
+
+@{
+    ViewData["Title"] = "Redaktə Et";
+    ViewData["Link"] = "Biz Nə Edirik";
+}
+
+<h1>Redaktə</h1>
+
+<h4>Biz Nə Edirik</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LeftText" class="control-label"></label>
+                <input asp-for="LeftText" class="form-control" />
+                <span asp-validation-for="LeftText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yadda Saxla" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

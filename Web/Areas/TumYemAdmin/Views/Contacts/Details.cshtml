@@ -1,0 +1,38 @@
+﻿@model Entities.Contact
+
+@{
+    ViewData["Title"] = "Detallar";
+    ViewData["Title"] = "Əlaqə";
+
+}
+
+<h1>Detallar</h1>
+
+<div>
+    <h4>Əlaqə</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WeAddress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WeAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Dəyiş</a> |
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>

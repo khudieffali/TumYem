@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Entities.AboutUsText>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Link"] = "Haqqımızda Məqalə";
+}
+
+<h1>Ana Səhifə</h1>
+
+<p>
+    <a asp-action="Create">Yarat +</a>
+</p>
+<table class="table table-bordered" id="myTable">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OneMain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneText)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+ @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OneMain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OneText)
+                </td>
+                <td class="col-lg-2">
+                     <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning" style="color:white">Dəyiş</a> |
+                   <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="color:white">Sil</a>
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+}

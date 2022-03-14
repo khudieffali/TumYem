@@ -1,0 +1,114 @@
+﻿@model StaticFooter
+
+   <!-- Start Footer 
+    ============================================= -->
+   
+        <!-- Fixed Shape -->
+        <div class="fixed-shape">
+            <img src="/assets/img/shape/2.png" alt="Shape">
+        </div>
+        <!-- Fixed Shape -->
+        <div class="container">
+            <div class="f-items default-padding">
+                <div class="row justify-content-between">
+                    <!-- Single Itme -->
+                    <div class="col-lg-4 col-md-6 item">
+                        <div class="f-item about">
+                            <img src="/assets/img/logo-light.png" alt="Logo">
+                            <p>
+                               @(Model.LeftDescription!=null && Model.LeftDescription.Length>200 ? Model.LeftDescription.Substring(0,200):Model.LeftDescription)
+                            </p>
+
+                        </div>
+                    </div>
+                    <!-- End Single Itme -->
+
+                    <!-- Single Itme -->
+                    <div class="col-lg-2 col-md-6 item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Keçidlər</h4>
+                            <ul>
+                                <li>
+                                    <a href="/">Ana Səhifə</a>
+                                </li>
+                              
+                                <li>
+                                    <a asp-controller="Products" asp-action="ShopList"  >Məhsullar</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Contact" asp-action="Contact">Əlaqə</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Itme -->
+                    <!-- Single Itme -->
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="f-item">
+                            <h4 class="widget-title">Əlaqə Məlumatı</h4>
+                            <div class="address">
+                                <ul>
+                                    <li>
+                                        <strong>Ünvan:</strong>
+                                       @Model.Address
+                                    </li>
+                                    <li>
+                                        <strong>Email: </strong>
+                                        <a href="@Model.EmailLink">@Model.Email</a>
+                                    </li>
+                                    <li>
+                                        <strong>Telefon: </strong>
+                                        <a href="javascript:void(0)">@Model.PhoneNumber</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="social">
+                                <ul>
+                                    <li class="facebook">
+                                        <a href="@Model.FacebookLink">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="@Model.TwitterLink">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="youtube">
+                                        <a href="@Model.InstagramLink">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                     <li class="whatsapp">
+                                        <a href="@Model.PhoneNumberLink">
+                                            <i style="color:green" class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Copyright &copy;  2022. Designed by <a href="https://websuper.az">WebSuper</a></p>
+                    </div>
+                    <div class="col-md-6 text-right link">
+                        <ul>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+   
+    <!-- End Footer -->

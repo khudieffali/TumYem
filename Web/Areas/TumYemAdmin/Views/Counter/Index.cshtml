@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Entities.Counter>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Link"] = "Sayğac";
+
+}
+
+<h1>Ana Səhifə</h1>
+
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountText)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountText)
+            </td>
+
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning" style="color:white">Dəyiş</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

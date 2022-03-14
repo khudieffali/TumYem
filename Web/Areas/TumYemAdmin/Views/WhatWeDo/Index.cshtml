@@ -1,0 +1,38 @@
+﻿@model Entities.WhatWeDo
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Link"] = "Biz Nə Edirik";
+}
+
+<h1>Ana Səhifə</h1>
+
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeftText)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.LeftText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Description)
+            </td>
+            <td>
+               <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning" style="color:white">Dəyiş</a> 
+            </td>
+        </tr>
+
+    </tbody>
+</table>

@@ -1,0 +1,154 @@
+﻿@model ProductSearchVM
+
+@{
+    ViewData["Title"] = "Məhsullar";
+    ViewData["TopTitle"] = "Məhsullar";
+
+}
+
+
+    <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area text-center shadow dark-hard bg-fixed text-light" style="background-image: url(/assets/img/banner/9.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h1>Məhsullar</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/"><i class="fas fa-home"></i>Ana Səhifə</a></li>
+                        <li class="active">Məhsullar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Blog
+    ============================================= -->
+    <div class="blog-area full-blog right-sidebar full-blog default-padding">
+        <div class="container">
+            <div class="blog-items">
+                <div class="row">
+                    <div class="blog-content col-lg-8 col-md-12">
+                        <div class="blog-item-box d-flex flex-wrap">
+                            <!-- Single Item -->
+
+                            @foreach (var item in Model.SearchProduct)
+                            {
+                                 <div class="single-item col-lg-6 col-md-12">
+                                <div class="item wow fadeInUp">
+                                    <div class="thumb">
+                                        <img style="width:80%" src="@item.PhotoUrl" alt="Thumb">
+                                        <div class="date">
+                                            @if(item.Discount!=0 && item.Discount != null)
+                                            {
+                                                <del style="color:red;margin-right:3px;">
+                                                @item.Price
+                                               </del>
+                                              @item.Discount
+                                              <span>AZN /ton</span>
+                                              
+                                            }
+                                            else
+                                            {
+                                               @item.Price <span>AZN /ton</span>
+                                            }
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <h3>
+                                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ID">@item.Name</a>
+                                        </h3>
+                                        <p>
+                                           @(item.Description!=null && item.Description.Length>90 ? item.Description.Substring(0,90):item.Description)...
+                                        </p>
+                                        <a class="btn circle btn-gray border btn-md" asp-controller="Products" asp-action="Details" asp-route-id="@item.ID">Ətraflı Oxu..</a>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                           
+                            <!-- End Single Item -->
+                           
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="row">
+                            <div class="col-md-12 pagi-area text-center">
+                                <nav aria-label="navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item @(Model.Pager.CurrentPage==1? "disabled":"")" ><a class="page-link" href="/Products/ShopList?PageNo=@(Model.Pager.CurrentPage - 1)"><i class="fas fa-angle-double-left"></i></a></li>
+                                      @for(int myPage=Model.Pager.StartPage; myPage < Model.Pager.EndPage + 1; myPage++){
+                                        <li class="page-item"><a class="page-link" href="/Products/ShopList?PageNo=@myPage">@myPage</a></li>
+                                         }
+                                        <li class="page-item @(Model.Pager.CurrentPage==Model.Pager.EndPage? "disabled":"")" ><a class="page-link" href="/Products/ShopList?PageNo=@(Model.Pager.CurrentPage+1)"><i class="fas fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Sidebar -->
+                    <div class="sidebar wow fadeInLeft col-lg-4 col-md-12">
+                        <aside>
+                            <div class="sidebar-item search">
+                                <div class="sidebar-info">
+                                    <form>
+                                        <input type="text" name="q" class="form-control">
+                                        <button type="submit"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="sidebar-item recent-post">
+                                <div class="title">
+                                    <h4>Son Əlavə Edilənlər</h4>
+                                </div>
+                                <ul>
+                                    @foreach (var end in Model.Products)
+                                    {
+                                      <li>
+                                        <div class="thumb">
+                                            <a >
+                                                <img stylw="width:80%" src="@end.PhotoUrl" alt="Thumb">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <a asp-controller="Products" asp-action="Details" asp-route-id="@end.ID">@end.Name</a>
+                                            <div class="meta-title">
+                                                <span class="post-date"><i class="fas fa-calendar-alt"></i>@end.PublishDate.ToString("MMM") @end.PublishDate.Day, @end.PublishDate.Year</span>
+                                            </div>
+                                        </div>
+                                    </li>  
+                                    }
+                                    
+                                  
+                                </ul>
+                            </div>
+                            <div class="sidebar-item category">
+                                <div class="title">
+                                    <h4>Kateqoriyalar</h4>
+                                </div>
+                                <div class="sidebar-info">
+                                    <ul>
+                                        @foreach (var cat in Model.CategoryList)
+                                        {
+                                              <li>
+                                            <a asp-controller="Products" asp-action="ShopList" asp-route-categoryId="@cat.ID">@cat.Name</a>
+                                        </li>
+                                        }
+                                      
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+  
+
+                        </aside>
+                    </div>
+                    <!-- End Start Sidebar -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog -->

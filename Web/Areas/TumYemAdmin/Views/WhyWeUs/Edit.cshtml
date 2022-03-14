@@ -1,0 +1,88 @@
+﻿@model Entities.WhyWeUs
+
+@{
+    ViewData["Title"] = "Redkaktə";
+    ViewData["Link"] = "Niyə Biz";
+
+}
+<style>
+    .label-photo {
+        background: gold;
+        padding: 10px 20px;
+        color: #fff;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        margin: 15px 0;
+    }
+</style>
+
+<h1>Redaktə Et</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="PhotoUrl" class="form-control" type="hidden" />
+              <div class="form-group">
+                <input class="d-none" name="NewPhoto" id="NewPhoto" type="file" />
+                <label class="label-photo control-label" for="NewPhoto"> Yeni Şəkil</label>
+            </div>
+                <div class="form-group">
+                <label class="d-block font-weight-bold">Köhnə Şəkil</label>
+                @if(Model.PhotoUrl!=null)
+                {
+                    <img src="@Model.PhotoUrl" width="100" />
+                    
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Header" class="control-label"></label>
+                <input asp-for="Header" class="form-control" />
+                <span asp-validation-for="Header" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeftStaff" class="control-label"></label>
+                <input asp-for="LeftStaff" class="form-control" />
+                <span asp-validation-for="LeftStaff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StaffBottomText" class="control-label"></label>
+                <input asp-for="StaffBottomText" class="form-control" />
+                <span asp-validation-for="StaffBottomText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RightService" class="control-label"></label>
+                <input asp-for="RightService" class="form-control" />
+                <span asp-validation-for="RightService" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceBottomText" class="control-label"></label>
+                <input asp-for="ServiceBottomText" class="form-control" />
+                <span asp-validation-for="ServiceBottomText" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Yadda Saxla" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

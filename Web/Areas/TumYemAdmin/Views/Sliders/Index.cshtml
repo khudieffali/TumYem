@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Entities.Slider>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+}
+
+<h1>Ana Səhifə</h1>
+
+<p>
+    <a asp-action="Create">Yarat +</a>
+</p>
+<table class="table table-bordered" id="myTable">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HeaderLeft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeaderRight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BackgroundPhoto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeaderLeft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeaderRight)
+            </td>
+       
+            <td>
+               <img width="100" src="@Html.DisplayFor(modelItem => item.BackgroundPhoto)"/> 
+            </td>
+            <td>
+                 <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning" style="color:white">Dəyiş</a>|
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary" style="color:white">Detallar</a>|
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="color:white">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+}

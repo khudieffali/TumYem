@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Entities.Contact>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+     ViewData["Title"] = "Əlaqə";
+}
+
+<h1>Ana Səhifə</h1>
+
+<p>
+    <a asp-action="Create">Yarat +</a>
+</p>
+<table class="table table-bordered" id="myTable">
+    <thead class="table-dark">
+        <tr>
+            <th>
+               @Html.DisplayNameFor(model => model.WeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeAddress)
+ 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning" style="color:white">Dəyiş</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary" style="color:white">Bax</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="color:white">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+}

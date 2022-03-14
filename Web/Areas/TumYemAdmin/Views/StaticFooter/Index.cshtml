@@ -1,0 +1,50 @@
+﻿@model Entities.StaticFooter
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Title"] = "Son Yazılar";
+
+}
+
+<h1>Ana Səhifə</h1>
+
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LeftDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="col-lg-4">
+                @Html.DisplayFor(modelItem => modelItem.LeftDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>modelItem.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.PhoneNumber)
+            </td>
+          
+            <td>
+               <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning" style="color:white">Dəyiş</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

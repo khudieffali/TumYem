@@ -1,0 +1,478 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["TopTitle"] = "Ana Səhifə";
+
+}
+
+<!-- Start Banner
+    ============================================= -->
+<div class="banner-area top-pad-80">
+    <div id="bootcarousel" class="carousel text-xl text-center text-light slide animate_text" data-ride="carousel">
+
+        <!-- Indicators for slides -->
+        <div class="carousel-indicator">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ol class="carousel-indicators">
+                            <li data-target="#bootcarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#bootcarousel" data-slide-to="1"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wrapper for slides -->
+        @{
+            var slide = 0;
+        }
+        <div class="carousel-inner carousel-zoom">
+
+            @foreach (var sld in Model.SliderList)
+            {
+             <div class="carousel-item @(slide ==0 ? "active" :String.Empty)">
+                    <div class="slider-thumb bg-fixed" style="background-image: url(@sld.BackgroundPhoto);"></div>
+                    <div class="box-table">
+                        <div class="box-cell shadow dark-hard">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-10 offset-lg-1">
+                                        <div class="content">
+                                            <h2 data-animation="animated zoomInLeft">@sld.HeaderLeft <strong>@sld.HeaderRight</strong></h2>
+                                            <p class="animated slideInRight">
+                                                @sld.Summary
+                                            </p>
+                                            <a data-animation="animated slideInUp" class="animated-btn" asp-controller="Products" asp-action="ShopList"><i class="fas fa-angle-right"></i>Məhsullar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+              slide++;
+            }
+        </div>
+
+        <!-- End Wrapper for slides -->
+
+    </div>
+</div>
+<!-- End Banner -->
+<!-- Start Services
+============================================= -->
+<div class="services-area overflow-hidden default-padding bottom-less">
+    <div class="container">
+        <div class="heading-left">
+            <div class="row">
+                <div class="col-lg-5">
+
+                    <h5>Biz nə edirik</h5>
+                    <h2>
+                        @Model.WhatWeDo.LeftText
+                    </h2>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <p>
+                        @Model.WhatWeDo.Description
+                    </p>
+                    <a class="btn circle btn-md btn-theme effect" asp-controller="Products" asp-action="ShopList">Hamısı <i class="fas fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="services-box">
+        <!-- Shape -->
+        <div class="shape-illustration">
+            <img src="/assets/img/shape/6.png" alt="Shape">
+        </div>
+        <!-- Shape -->
+        <div class="container-full">
+            <div class="services-items">
+                <div class="row">
+                    <!-- Single Item -->
+                    @foreach (var prd in Model.ProductList)
+                    {
+                        <div class="single-item col-lg-3 col-md-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img class="img-fluid" src="@prd.PhotoUrl" alt="Thumb">
+                                    <div class="content">
+                                        <div class="icon">
+                                            <i class="flaticon-fertilizer"></i>
+                                        </div>
+                                        <div class="title">
+                                            <h5><a asp-controller="Products" asp-action="ShopList"><strong style="font-size:16px;font-weight:500">@prd.Category.Name</strong>@prd.Name</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <!-- End Single Item -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Services Area -->
+<!-- Start History
+============================================= -->
+<div class="history-area default-padding text-center bg-dark text-light">
+    <!-- Shape -->
+    <div class="fixed-shape-center" style="background-image: url(/assets/img/shape/12.png);"></div>
+    <!-- End Shape -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h2>Məhsullar</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="history-items">
+            <div class="row">
+                <div class="carousel slide" style="width:100%" data-ride="carousel" id="timeline-carousel" data-interval="5000000">
+
+                    <!-- Carousel Indicators -->
+                    <ol class="carousel-indicators">
+                        <div class="timeline-carousel owl-carousel owl-theme">
+                            @{
+                                var counter = 0;
+                            }
+                            @foreach (var item in Model.ProductList)
+                            {
+                            <li data-target="#timeline-carousel" data-slide-to="@counter" id="tabMenu" class="@(counter==0?"active":String.Empty)">
+                                <h4 style="font-size:17px">@item.Name</h4>
+                            </li>
+                                counter++;
+                            }
+
+
+                </div>
+                </ol>
+                    @{
+                        var key = 0;
+                    }
+                    <div class="carousel-inner">
+                    @foreach (var prd in Model.ProductList)
+                    {
+                        <div class="carousel-item @(key==0?"active":String.Empty)">
+                            <h2>
+                                     @prd.Name
+                            </h2>
+                            <p>
+                                  @(prd.Description!=null && prd.Description.Length>350 ? prd.Description.Substring(0,350):prd.Description)...
+                            </p>
+                        </div>
+                        key++; 
+                      }
+                    </div>
+
+                <!-- End Carousel Content -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fixed Shape -->
+<div class="fixed-shape">
+    <img src="/assets/img/shape/brush-up.png" alt="Shape">
+</div>
+<!-- End Fixed Shape -->
+    </div>
+<!-- End History Area -->
+<!-- Start Why Choose Us
+============================================= -->
+<div class="choose-us-area default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 thumb">
+                <img src="@Model.WhyWeUs.PhotoUrl" alt="Thumb">
+            </div>
+            <div class="col-lg-6 info">
+                <h5>Bizi niyə seçəsiniz?</h5>
+                <h2 class="area-title">@Model.WhyWeUs.Header</h2>
+                <p>
+                    @Model.WhyWeUs.Description
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 single-item">
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-farmer-1"></i>
+                            </div>
+                            <div class="info">
+                                <h5>@Model.WhyWeUs.LeftStaff</h5>
+                                <p>
+                                    @Model.WhyWeUs.StaffBottomText
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 single-item">
+                        <div class="item">
+                            <div class="icon">
+                                <i class="flaticon-planting"></i>
+                            </div>
+                            <div class="info">
+                                <h5>@Model.WhyWeUs.RightService</h5>
+                                <p>
+                                    @Model.WhyWeUs.ServiceBottomText
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Why Choose Us Area -->
+<!-- Start Product
+============================================= -->
+<div class="offer-product-area bg-gray default-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h4>Bizim Mağaza</h4>
+                    <h2>Endirimli Məhsullar</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="rosw">
+            <div class="csol-lg-12">
+                <div class="carousel-box">
+                    <div class="bottom">
+                    </div>
+                    <div class="offer-pro-carousel owl-carousel owl-theme">
+                        <!-- Single Item -->
+                        @foreach (var item in Model.ProductList)
+                        {
+                            if (item.Discount > 0 && item.Discount != null)
+                            {
+                                <div class="single-item">
+                                    <div class="row align-center">
+                                        <div class="col-lg-6">
+                                            <div class="thumb">
+                                                <img src="@item.PhotoUrl" alt="Product">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 info">
+                                            <h2>@item.Name</h2>
+                                            <h4 class="price"><del style="color:red">@item.Price AZN /ton</del> @item.Discount AZN /ton</h4>
+                                            <p>
+                                               @(item.Description!=null && item.Description.Length>350 ? item.Description.Substring(0,350):item.Description)...
+                                            </p>
+                                            <a class="btn circle btn-theme border btn-md" asp-controller="Products" asp-action="Details" asp-route-id="@item.ID">Ətraflı</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <!-- End Single Item -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Area -->
+<!-- Start Faq
+============================================= -->
+<div class="faq-area bg-gray relative">
+    <div class="container">
+        <div class="faq-items">
+            <div class="row align-center">
+
+                <div class="col-lg-4 thumb wow fadeInUp" data-wow-delay="550ms">
+                    <img src="@Model.About.CompanyPhoto" alt="Thumb">
+                </div>
+
+                <div class="col-lg-7 offset-lg-1 wow fadeInRight">
+                    <div class="heading">
+                        <h2 class="area-title">Haqqımızda</h2>
+                        <p>
+                            @Model.About.Description
+                        </p>
+                    </div>
+                    <div class="faq-content default-padding-bottom">
+                        <div class="accordion" id="accordionExample">
+                            @{
+                                var show = 0;
+                            }
+                            @foreach (var accordion in Model.AboutUsText)
+                            {
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="mb-0">
+                                            @accordion.OneMain
+                                        </h4>
+                                    </div>
+
+                                    <div class="collapse @(show==0? "show":String.Empty)">
+                                        <div class="card-body">
+                                            <p>
+                                                @accordion.OneText
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                show++;
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Faq Area -->
+<!-- Start Partner
+============================================= -->
+<!-- Start Gallery Area
+============================================= -->
+<div class="gallery-area default-padding">
+    <!-- Shape -->
+    <div class="fixed-shape">
+        <img src="/assets/img/shape/5.png" alt="Shape">
+    </div>
+    <!-- Shape -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h4>Məhsullar</h4>
+                    <h2>Önə Çıxarılanlar</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="case-items-area">
+            <div class="masonary">
+                <div id="portfolio-grid" class="gallery-items colums-4">
+                    <!-- Single Item -->
+                    @foreach (var feat in Model.FeaturedProduct)
+                    {
+
+                        <div class="pf-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="@feat.PhotoUrl" alt="Thumb">
+                                    <a href="@feat.PhotoUrl" class="item popup-gallery">
+                                        Bax
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <h4>
+                                        <a asp-controller="Products" asp-action="Details" asp-route-id="@feat.ID">@feat.Name</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- End Single Item -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Gallery Area -->
+<!-- Start Fun Factor Area
+============================================= -->
+<div class="fun-factor-area default-padding-bottom">
+    <div class="container">
+        <div class="fun-fact-items text-center">
+            <div class="row">
+                @foreach (var count in Model.Counters)
+                {
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer" data-to="@count.Count" data-speed="5000">@count.Count</div>
+                            <span class="medium">@count.CountText</span>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Fun Factor Area -->
+<!-- Start Blog
+============================================= -->
+<div class="blog-area default-padding-bottom bottom-less">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h4>Bloqlar</h4>
+                    <h2>Son Paylaşılanlar</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="blog-items">
+            <div class="row">
+                <!-- Single Item -->
+                @foreach (var blog in Model.Blogs)
+                {
+                    <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="thumb">
+                                <img asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.ID" src="@blog.BlogPhoto" alt="Thumb">
+                                <div class="date">@blog.PublishDate.ToString("MMM") @blog.PublishDate.Day, @blog.PublishDate.Year</div>
+                            </div>
+                            <div class="info">
+                                <h4>
+                                    <a asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.ID">@blog.HeaderText</a>
+                                </h4>
+                                <p>
+                                     @(blog.Description!=null && blog.Description.Length>150 ? blog.Description.Substring(0,150):blog.Description)...
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!-- End Single Item -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog Area -->
+@section  Scripts{
+<script>
+            $(".accordion .card .card-header").click(function(){
+        $(".accordion .card .collapse").stop().slideUp();
+        $(this).next().stop().slideToggle();
+    })
+    $("#tabMenu h4").click(function(){
+       let btnindex= $(this).index();
+       $(".carousel-inner .carousel-item").stop().slideUp();
+       $(".carousel-inner .carousel-item").eq(btnindex).stop().slideDown();
+    })  
+</script>
+}

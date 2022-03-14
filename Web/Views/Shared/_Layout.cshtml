@@ -1,0 +1,114 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Farmi - Organic Farm Agriculture Template">
+   
+    <!-- ========== Page Title ========== -->
+    <title>TumYem - @ViewData["TopTitle"]</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/assets/css/themify-icons.css" rel="stylesheet" />
+    <link href="/assets/css/flaticon-set.css" rel="stylesheet" />
+    <link href="/assets/css/magnific-popup.css" rel="stylesheet" />
+    <link href="/assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/assets/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="/assets/css/animate.css" rel="stylesheet" />
+    <link href="/assets/css/bootsnav.css" rel="stylesheet" />
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/css/responsive.css" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- Custom Stylesheet -->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="/assets/js/html5/html5shiv.min.js"></script>
+      <script src="/assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+
+    
+    <!-- Header 
+    ============================================= -->
+    <header id="home">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
+
+            <div class="container-full">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <img src="/assets/img/logo-light.png" class="logo logo-display" alt="Logo">
+                        <img src="/assets/img/logo.png" class="logo logo-scrolled" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav " data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="dropdown">
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown" >Ana Səhifə</a>
+                        </li>
+                        <li class="dropdown">
+                            <a asp-controller="Products" asp-action="ShopList" class="dropdown-toggle" data-toggle="dropdown" >Məhsullar</a>
+                        </li>
+                        <li><a asp-controller="Contact" asp-action="Contact">Əlaqə</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+    <!-- End Header -->
+    @RenderBody()
+     <footer class="bg-dark text-light">
+         @await Component.InvokeAsync("Footer")
+   </footer>
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.appear.js"></script>
+    <script src="/assets/js/jquery.easing.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/modernizr.custom.13711.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/progress-bar.min.js"></script>
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/count-to.js"></script>
+    <script src="/assets/js/YTPlayer.min.js"></script>
+    <script src="/assets/js/loopcounter.js"></script>
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/bootsnav.js"></script>
+    <script src="/assets/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required:false)
+</body>
+</html>

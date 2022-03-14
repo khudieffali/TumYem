@@ -1,0 +1,63 @@
+﻿@model Entities.AboutUs
+
+@{
+    ViewData["Title"] = "Redaktə";
+    ViewData["Link"] = "Haqqımızda";
+
+}
+<style>
+    .label-photo {
+        background: gold;
+        padding: 10px 20px;
+        color: #fff;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        margin: 15px 0;
+    }
+</style>
+
+<h1>Redaktə Et</h1>
+
+<h4>Haqqımızda</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CompanyPhoto" />
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+                <input class="d-none" name="NewPhoto" id="NewPhoto" type="file" />
+                <label class="label-photo control-label" for="NewPhoto"> Yeni Şəkil</label>
+            </div>
+                <div class="form-group">
+                <label class="d-block font-weight-bold">Köhnə Şəkil</label>
+                @if(Model.CompanyPhoto!=null)
+                {
+                    <img src="@Model.CompanyPhoto" width="120" />
+                    
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yadda Saxla" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

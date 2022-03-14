@@ -1,0 +1,49 @@
+﻿@model Entities.Slider
+
+@{
+    ViewData["Title"] = "Detallar";
+    ViewData["Link"] = "Slaydlar";
+}
+
+<h1>Detallar</h1>
+
+<div>
+    <h4>Slayd</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HeaderLeft)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HeaderLeft)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HeaderRight)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HeaderRight)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BackgroundPhoto)
+        </dt>
+        <dd class = "col-sm-10">
+           <img width="100" src="@Html.DisplayFor(model => model.BackgroundPhoto)" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsShow)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsShow)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ID">Dəyiş</a> |
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>

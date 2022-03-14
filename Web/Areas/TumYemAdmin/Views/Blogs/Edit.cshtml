@@ -1,0 +1,69 @@
+﻿@model Entities.Blog
+
+@{
+    ViewData["Title"] = "Redaktə";
+     ViewData["Link"] = "Bloqlar";
+}
+<style>
+    .label-photo {
+        background: gold;
+        padding: 10px 20px;
+        color: #fff;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        margin: 15px 0;
+    }
+</style>
+
+<h1>Redaktə Et</h1>
+
+<h4>Bloq</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BlogPhoto" />
+            <input type="hidden" asp-for="PublishDate" />
+             <div class="form-group">
+                <input class="d-none" name="NewBlogPhoto" id="NewBlogPhoto" type="file" />
+                <label class="label-photo control-label" for="NewBlogPhoto"> Yeni Şəkil</label>
+            </div>
+             <div class="form-group">
+                <label class="d-block font-weight-bold">Köhnə Şəkil</label>
+                @if(Model.BlogPhoto!=null)
+                {
+                    <img src="@Model.BlogPhoto" width="100" />
+                    
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="HeaderText" class="control-label"></label>
+                <input asp-for="HeaderText" class="form-control" />
+                <span asp-validation-for="HeaderText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <input type="submit" value="Yadda Saxla" class="btn btn-warning" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

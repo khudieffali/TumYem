@@ -1,0 +1,53 @@
+﻿@model Entities.WhyWeUs
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Link"] = "Niyə Biz";
+
+}
+
+<h1>Ana Səhifə</h1>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Header)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LeftStaff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RightService)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                <img width="100" src="@Html.DisplayFor(modelItem => modelItem.PhotoUrl)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Header)
+            </td>
+        
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.LeftStaff)
+            </td>
+       
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.RightService)
+            </td>
+            <td>
+              <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning" style="color:white">Dəyiş</a>
+              <a asp-action="Details" asp-route-id="@Model.ID" class="btn btn-primary" style="color:white">Bax</a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>

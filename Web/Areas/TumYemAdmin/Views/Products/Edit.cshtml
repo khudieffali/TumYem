@@ -1,0 +1,106 @@
+﻿@model Entities.Product
+
+@{
+    ViewData["Title"] = "Redaktə";
+    ViewData["Title"] = "Məhsullar";
+}
+<style>
+    .label-photo {
+        background: gold;
+        padding: 10px 20px;
+        color: #fff;
+        margin: 10px 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        margin: 15px 0;
+    }
+</style>
+
+
+<h1>Redaktə</h1>
+
+<h4>Məhsul</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="PhotoUrl" />
+            <input type="hidden" asp-for="PublishDate" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InStock" class="control-label"></label>
+                <input asp-for="InStock" class="form-control" />
+                <span asp-validation-for="InStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="d-none" name="NewPhoto" id="NewPhoto" type="file" />
+                <label class="label-photo control-label" for="NewPhoto"> Yeni Şəkil</label>
+            </div>
+             <div class="form-group">
+                <label class="d-block font-weight-bold">Köhnə Şəkil</label>
+                @if(Model.PhotoUrl!=null)
+                {
+                    <img src="@Model.PhotoUrl" width="100" />
+                    
+                }
+            </div>
+      
+            <div class="form-group">
+                <label asp-for="SKU" class="control-label"></label>
+                <input asp-for="SKU" class="form-control" />
+                <span asp-validation-for="SKU" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsFeatured" /> @Html.DisplayNameFor(model => model.IsFeatured)
+                </label>
+            </div>
+             <di class="form-group">
+                <label asp-for="CategoryID" class="control-label"></label>
+                <select asp-for="CategoryID" class ="form-control">
+                    <option value=0 disabled selected>...Kateqoriya Seçin...</option>
+                    @foreach (var item in ViewBag.categoryList as List<Category>)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+            </di
+            v>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <input type="submit" value="Dəyiş" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Siyahıya Qayıt</a>
+</div>
+
+

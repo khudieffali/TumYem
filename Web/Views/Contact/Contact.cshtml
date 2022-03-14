@@ -1,0 +1,63 @@
+﻿@model ContactVM
+@{
+    ViewData["Title"] = "Əlaqə";
+    ViewData["TopTitle"] = "Əlaqə";
+}
+   <!-- Start Breadcrumb 
+    ============================================= -->
+    <div class="breadcrumb-area text-center shadow dark bg-fixed text-light" style="background-image: url(/assets/img/banner/8.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h1>Bizimlə Əlaqə</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/"><i class="fas fa-home"></i>Ana Səhifə</a></li>
+                        <li class="active">Əlaqə</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Contact 
+    ============================================= -->
+    <div class="contact-area default-padding">
+        
+        <div class="container-full">
+            <div class="contact-items">
+                <div class="row align-center">
+                    <div class="col-lg-6 contact-info">
+                        <ul>
+                             <li>
+                                <h4>Bizim Ünvan</h4>
+                                @foreach (var cnt in Model.Contacts)
+                                {
+                                   <p>@cnt.WeAddress</p>  
+                                }
+                            </li>
+                            <li>
+                                <h4>Telefon</h4>
+                                @foreach (var phn in Model.Contacts)
+                                {
+                                   <p>@phn.PhoneNumber</p>  
+                                }
+                            </li>
+                            <li>
+                                <h4>Email</h4>
+                                @foreach (var eml in Model.Contacts)
+                                {
+                                   <p>@eml.Email</p>  
+                                }
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="google-maps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1519.647157775081!2d49.82853165816746!3d40.380169194842345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6dac25bf3d%3A0x9078c77f64b0ce50!2sCompar%20Academy!5e0!3m2!1saz!2s!4v1646602057782!5m2!1saz!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+    <!-- End Contact Area -->

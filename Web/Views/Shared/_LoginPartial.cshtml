@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="logreg d-flex align-items-center">
+    <li class="nav-item">
+        <a  class="nav-link text-dark text-center" style="font-weight:600;font-size:15px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Xoş Gəlmisiniz @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button style="background:red;color:white;font-size:14px;padding:8px 18px" type="submit" class="nav-link btn btn-danger text-center">Çıxış</button>
+        </form>
+    </li>
+    </div>
+}
+</ul>

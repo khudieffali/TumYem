@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Entities.Blog>
+
+@{
+    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Link"] = "Bloqlar";
+
+}
+
+<h1>Ana Səhifə</h1>
+
+<p>
+    <a asp-action="Create">Yarat +</a>
+</p>
+<table class="table table-bordered" id="myTable">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPhoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeaderText)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img width="100" src="@Html.DisplayFor(modelItem => item.BlogPhoto)"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeaderText)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning" style="color:white">Dəyiş</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary" style="color:white">Bax</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" style="color:white">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+}
